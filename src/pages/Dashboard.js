@@ -38,6 +38,7 @@ export default function MainPage() {
 
   const [resumeFile, setResumeFile] = useState(null);
   const [generating, setGenerating] = useState(false);
+  const [appId, setAppId] = useState("");
   const [results, setResults] = useState(null); // { matchPercent, summary, resume, coverLetter, motivationLetter }
 
   // parse skills arrays for quick usage
@@ -150,10 +151,12 @@ export default function MainPage() {
       console.log("Saving initial job data to Firestore...");
       const appId = await saveApplicationToFirestore(user.uid, job, candidate, resumeUrl);
       console.log("✅ Application saved with ID:", appId);
+      setAppId(appId)
 
       // 3️⃣ Call your backend to generate AI results
       console.log("Calling AI backend...");
-      const backendUrl = "http://localhost:5000/generate"; // change later if deployed
+      const backendUrl = `${process.env.REACT_APP_BACKEND_URL}/generate`; // change later if deployed
+      console.log("Calling AI backend URLRURLRURLRURLRURLRIURLR...", backendUrl);
 
       const response = await fetch(backendUrl, {
         method: "POST",
@@ -179,6 +182,8 @@ export default function MainPage() {
       });
 
       const result = await response.json();
+
+      console.log("'''&&&&&&&&& && '''''''' ", result)
 
       if (!result.success) {
         throw new Error(result.error || "AI generation failed.");
@@ -296,6 +301,7 @@ export default function MainPage() {
             a.click();
             URL.revokeObjectURL(url);
           }}
+          xId={appId}
         />
       </div>
     </div>

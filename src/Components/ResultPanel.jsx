@@ -13,7 +13,7 @@ function Panel({ title, children, onDownload, filename }) {
   );
 }
 
-export default function ResultsPanel({ results, onDownload }) {
+export default function ResultsPanel({ results, onDownload, xId }) {
   if (!results) {
     return (
       <div className="results-root">
@@ -24,6 +24,8 @@ export default function ResultsPanel({ results, onDownload }) {
 
   return (
     <div className="results-root">
+        <div><em>id: {xId}</em></div>
+
       <div className="summary-card">
         <div>
           <strong>Skill match:</strong> <span className="big">{results.skillMatch}%</span>
