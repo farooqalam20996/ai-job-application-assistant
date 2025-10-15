@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+// App.jsx
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import AuthPage from "./pages/AuthPage";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
+function ProtectedRoute({ children }) {
+  const { user, initializing } = useAuth();
+  if (initializing) return null; // or a loader
+
+  return user ? children : <Navigate to="/login" replace />;
+}
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<AuthPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
-export default App;
+
+// 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
