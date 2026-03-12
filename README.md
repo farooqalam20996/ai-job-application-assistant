@@ -1,70 +1,160 @@
-# Getting Started with Create React App
+🚀 AI Job Application Assistant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An intelligent, end-to-end AI-powered Job Application Assistant that helps users automatically generate a Tailored Resume, Cover Letter, Motivation Letter, and Job Fit Analysis — all based on the job posting and candidate profile.
 
-## Available Scripts
+🧠 Powered by
 
-In the project directory, you can run:
+React, Node.js (Express), Material UI, and Groq/OpenAI API
 
-### `npm start`
+✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+✅ Upload your resume and input your job details
+✅ Automatically compare job requirements with candidate skills
+✅ Generate:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Tailored Resume
 
-### `npm test`
+Cover Letter
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Motivation Letter
+✅ Get Skill Match Percentage
+✅ Modern, responsive UI (Material UI + custom styles)
+✅ Real-time AI generation via Groq/OpenAI API
 
-### `npm run build`
+🏗️ Project Structure
+AI-Job-Application-Assistant/
+├── frontend/        # React app (Netlify)
+│   ├── src/
+│   ├── package.json
+│   └── ...
+└── backend/         # Express server (Render)
+    ├── index.js
+    ├── package.json
+    └── ...
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+💻 Run Locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Follow these steps to run both the frontend and backend on your local machine.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+🧩 1. Clone the Repository
+git clone https://github.com/<your-username>/ai-job-application-assistant.git
+cd ai-job-application-assistant
 
-### `npm run eject`
+⚙️ 2. Setup Backend
+cd backend
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create a .env file inside the backend folder and add your API keys:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+PORT=5000
+GROQ_API_KEY=your_groq_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here  # optional
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+Then run the backend:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+npm run dev
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+✅ The backend should now be running at:
+http://localhost:5000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+💅 3. Setup Frontend
 
-### Analyzing the Bundle Size
+Open a new terminal window:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+cd frontend
+npm install
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+In frontend/src/config.js (or directly inside your API call), make sure your backend URL is correct:
 
-### Advanced Configuration
+const backendUrl = "http://localhost:5000/generate";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+Then run the React app:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+npm start
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+✅ The frontend should now be running at:
+http://localhost:3000
+
+🌐 Deployed Version
+
+🔹 Frontend (Netlify): https://your-netlify-app-url.netlify.app
+
+🔹 Backend (Render): https://your-backend.onrender.com
+
+🧮 Example Request (Backend API)
+POST /generate
+Content-Type: application/json
+
+{
+  "jobDescription": "Frontend Engineer skilled in React, TypeScript, and Node.js",
+  "userData": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "skills": "React, Node.js, CSS, GraphQL",
+    "summary": "Experienced Frontend Developer with a passion for clean design."
+  }
+}
+
+
+Example Response:
+
+{
+  "success": true,
+  "data": {
+    "summary": "...",
+    "resume": "...",
+    "coverLetter": "...",
+    "motivationLetter": "...",
+    "skillMatch": 87
+  }
+}
+
+🧠 How It Works
+
+User enters job details and personal information
+
+Backend sends a structured prompt to Groq API (LLaMA 3.3)
+
+AI compares job requirements and user skills
+
+Generates tailored documents + calculates Skill Match %
+
+Frontend displays results beautifully
+
+🪄 Tech Stack
+Layer	Technology
+Frontend	React, Material UI, CSS
+Backend	Node.js, Express
+AI Engine	Groq (LLaMA 3.3), OpenAI
+Database (Optional)	Firebase (for user/app tracking)
+Deployment	Frontend → Netlify, Backend → Render
+🧰 Scripts
+Command	Description
+npm start	Start React app
+npm run build	Build frontend for production
+npm run dev	Start backend with nodemon
+npm run server	Run backend normally
+💡 Future Enhancements
+
+🔹 Save generated results in Firebase
+
+🔹 Multi-language support
+
+🔹 PDF export for all generated documents
+
+🔹 Enhanced AI model fine-tuning
+
+👨‍💻 Author
+
+Farooq Alam
+Frontend Engineer | AI Developer
+🌐 LinkedIn
+ • Portfolio
+
+Would you like me to include screenshots and badges (e.g., Netlify deploy status, Render live status) to make the README look even more professional for your client/demo version?
