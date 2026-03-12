@@ -77,57 +77,6 @@ export default function MainPage() {
     return "Bad";
   }
 
-  // Placeholder generator — simulates AI output for UI testing.
-  // Real implementation will call your backend endpoint that talks to OpenAI.
-  function makePlaceholderResults() {
-    const matchPercent = computeSkillMatch(jobSkillsArray, candidateSkillsArray);
-    const category = getMatchCategory(matchPercent);
-    const fullName = `${candidate.firstName} ${candidate.lastName}`.trim() || "Candidate";
-    const summaryText = job.description
-      ? `${fullName} is a candidate for ${job.title || "this position"}. Brief summary: ${candidate.summary || "No summary provided."}`
-      : `${fullName} — ${candidate.summary || "No summary provided."}`;
-
-    const tailoredResume = [
-      `${fullName}`,
-      candidate.email ? `Email: ${candidate.email}` : "",
-      candidate.phone ? `Phone: ${candidate.phone}` : "",
-      candidate.skills ? `Skills: ${candidate.skills}` : "",
-      candidate.experienceYears ? `Experience: ${candidate.experienceYears} years` : "",
-      "",
-      "Professional Summary:",
-      candidate.summary || "—",
-      "",
-      "Matched to job:",
-      job.title ? `Position: ${job.title} at ${job.company || "Company"}` : "",
-      job.requiredSkills ? `Required skills: ${job.requiredSkills}` : "",
-    ].filter(Boolean).join("\n");
-
-    const coverLetter = `Dear Hiring Team,
-
-    I am writing to apply for the ${job.title || "position"}${job.company ? ` at ${job.company}` : ""}. My background in ${candidate.skills || "relevant skills"} and ${candidate.experienceYears || "experience"} years of experience makes me a strong fit.
-
-    (Summary)
-    ${candidate.summary || "—"}
-
-    Thank you for considering my application.
-
-    Sincerely,
-    ${fullName}`;
-
-    const motivationLetter = `Motivation:
-
-    I am particularly motivated to join ${job.company || "this company"} because of the opportunity to work on ${job.title || "this role"} and to apply my skills in ${candidate.skills || "relevant areas"}. I am eager to contribute and grow with the team.`;
-
-    return {
-      matchPercent,
-      category,
-      summary: summaryText,
-      resumeText: tailoredResume,
-      coverLetter,
-      motivationLetter,
-    };
-  }
-
   // triggered when user clicks "Create Smart AI Job Application"
   async function handleCreateClick() {
     if (!job.description && !job.title) {
@@ -222,7 +171,7 @@ export default function MainPage() {
     <header className="app-header">
       <div className="nav-left">
         <div style={{ display:"flex", alignItems:"center", justifyContent:"center" }} >
-          <img src={require('../assets/logo_1.png')} style={{height: '5rem', width: '5rem'}} />
+          <img src={require('../assets/logo_1.png')} style={{height: '5rem', width: '5rem'}} alt="AI Job Application Assistant logo" />
           <h2 className="logo">AI Job Application & Assistant</h2>
         </div>
         <nav className="nav-links">
