@@ -35,17 +35,21 @@ Instead of manually adjusting resumes and writing cover letters repeatedly, user
 
 > Create a folder called `screenshots` in your project root.
 
-### Dashboard
+### Login
 
 ![Login](./src/assets/login.png)
 
-### AI Generated Resume
+### AI Dashboard
 
 ![Dashbaord](./src/assets/dashboard.png)
 
-### Cover Letter Generation
+### Prompt Area
 
 ![Prompt](./src/assets/promptArea.png)
+
+### AI Generation Result
+
+![Result](./src/assets/result.png)
 
 ---
 
@@ -201,10 +205,6 @@ Add:
 ```env
 PORT=5000
 
-GROQ_API_KEY=your_key_here
-
-OPENAI_API_KEY=your_key_here
-```
 
 Run:
 
